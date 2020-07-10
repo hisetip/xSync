@@ -1,60 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-    <head>
-        <title>xSync</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    </head>
 
-    <body>
+<head>
+  <title>Vítor Hugo Menino</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
 
-        <nav class="navbar navbar-inverse sticky-top navbar-expand-lg">
-            <div class="container-fluid">
-              <div class="navbar-header">
-                <a class="navbar-brand" href="/">Vítor Hugo Menino</a>
-              </div>
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="/about">About me</a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Projects
-                    <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="/xSync">xSync</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Recommended content
-                    <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="/xSync">Books</a></li>
-                      <li><a href="/xSync">Movies & TV</a></li>
-                      <li><a href="/xSync">Quotes</a></li>
-                      <li><a href="/xSync">Personalities</a></li>
-                    </ul>
-                </li>
-              </ul>
-            </div>
-        </nav>
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+    }
 
+    .carousel-inner img {
+      width: 100%;
+      /* Set width to 100% */
+      margin: auto;
+      min-height: 200px;
+    }
+
+    /* Hide the carousel text when the screen is less than 600 pixels wide */
+    @media (max-width: 600px) {
+      .carousel-caption {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-inverse sticky-top navbar-expand-lg">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Vítor Hugo Menino</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About me</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Projects
+            <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/xSync">xSync</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Recommended content
+            <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/xSync">Books</a></li>
+            <li><a href="/xSync">Movies & TV</a></li>
+            <li><a href="/xSync">Quotes</a></li>
+            <li><a href="/xSync">Personalities</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- same for every page up until here-->
+  <div class="container-fluid">
+    <h1 id="xsync-browser-extension">xSync browser extension</h1>
+    <h4>xSync is an <a href="https://github.com/hisetip/xSync">open-source</a> browser extension thats allows the user to
+      sync tabs between different browsers (e.g., Firefox and Chrome).</h4>
+    <div class="container text-center">    
+      <h3>Download and install:</h3><br>
+      <div class="row">
+        <a href="https://addons.mozilla.org/en-US/firefox/addon/xsync/"><div class="col well text-center">
+          <p>Install in Mozilla Firefox</p>
+        </div></a>
+        <a href="https://google.com/"><div class="col well text-center">
+          <p>Install in Google Chrome</p>
+        </div></a>
         
-        <!-- same for every page up until here-->
-        <h1>xSync</h1>
-        <h3>Being made</h3>
+      </div>
+      <p>By installing, you're agreeing to the <a href="https://menino.eu/xsync/privacypolicy">Privacy Policy</a> and the <a href="https://menino.eu/xsync/termsandconditions">Terms and Conditions</a>.</p>
+    </div>
+    <h2 id="how-it-works">How it works</h2>
+    <ul>
+      <li>The user logs in with a user key and can see the tabs from all the logged-in browsers. This key is personal
+        and
+        <strong>should be kept private</strong> (since anyone with it can see the user&#39;s tabs&#39; names and URLs).
+      </li>
+      <li>If the user has no key yet, the user can click on the register button and a key is automatically generated for
+        the user.</li>
+      <li>This extension is fully <a href="https://github.com/hisetip/xSync">open-source</a>. If you want, you can contribute by making a pull request!</li>
+    </ul>
+    <h2 id="permisions-asked">Permisions asked</h2>
+    <ul>
+      <li><strong>Storage</strong>
+        <ul>
+          <li>This permission is asked so that we can save the user key so that the user doesn&#39;t have to login each
+            time it opens the extension.</li>
+        </ul>
+      </li>
+      <li><strong>Tabs</strong>
+        <ul>
+          <li>We use this permission to access the titles/names and URLs of the browser tabs. We don&#39;t access/save
+            the
+            content of the page itself—only it&#39;s title and URL.</li>
+        </ul>
+      </li>
+    </ul>
+    <h2 id="where-to-install-it">Where to install it</h2>
+    <ul>
+      <li>You can find the Firefox extension <a href="https://menino.eu/xSync">here</a> and the Chrome extension <a
+          href="https://menino.eu/xSync">here</a>.</li>
+    </ul>
+    <h2 id="terms-and-conditions-and-privacy-policy">Terms and Conditions and Privacy Policy</h2>
+    <ul>
+      <li>By using this open-source extension you are agreeing to it&#39;s <a
+          href="https://menino.eu/xSync/privacypolicy">privacy policy</a> and <a
+          href="https://menino.eu/xSync/termsandconditions">terms and conditions</a>.</li>
+    </ul>
+    <h2 id="next-steps">Next steps</h2>
+    <ul>
+      <li>Making it available for Safari and Opera.</li>
+      <li>Also syncing bookmarks between different browsers.</li>
+    </ul>
+    <h2 id="about-me">🍻</h2>
+    <ul>
+      <li>Hit me up if you need anything.</li>
+      <li>If you find this useful, consider buying me a beer by donating to <a
+          href="paypal.me/hisetip">paypal.me/hisetip</a> or to the Bitcoin address <code>13xidhEb5RymfZX9qoHFH4myE7B6SCtC9g</code></li>
+    </ul>
+  </div>
 
-        <!-- same for every page below here-->
-        <footer class="container-fluid text-center">
-            <p>Vítor Hugo Menino</p>
-            <a href="mailto:vhmenino@gmail.com">vhmenino@gmail.com</a> |
-            <a href="https://linkedin.com/vhmenino" target="_blank">LinkedIn (@vhmenino)</a> |
-            <a href="https://twitter.com/hisetip" target="_blank">Twitter (@hisetip)</a> |
-            <a href="https://instagram.com/hisetip" target="_blank">Instagram (@hisetip)</a>
-        </footer>
-       
-        
-    </body>
-</html> 
+
+  <!-- same for every page below here-->
+  <br>
+  <footer class="container-fluid text-center">
+    <p>Vítor Hugo Menino</p>
+    <a href="mailto:vhmenino@gmail.com">vhmenino@gmail.com</a> |
+    <a href="https://linkedin.com/vhmenino" target="_blank">LinkedIn (@vhmenino)</a> |
+    <a href="https://twitter.com/hisetip" target="_blank">Twitter (@hisetip)</a> |
+    <a href="https://instagram.com/hisetip" target="_blank">Instagram (@hisetip)</a>
+  </footer>
+
+
+</body>
+
+</html>
