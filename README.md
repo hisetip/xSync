@@ -15,7 +15,7 @@ xSync is an [open-source](https://github.com/hisetip/xSync) browser extension  t
   * We use this permission to access the titles/names and URLs of the browser tabs. We don't access/save the content of the page itself—only it's title and URL.
 
 ## Where to install it
-* You can find the Firefox extension [here](https://addons.mozilla.org/en-US/firefox/addon/xsync/) and the Chrome extension [here](https://menino.eu/xSync).
+* You can find the Firefox extension [here](https://addons.mozilla.org/en-US/firefox/addon/xSync/) and the Chrome extension [here](https://menino.eu/xSync).
 
 ## Terms and Conditions and Privacy Policy
 * By using this open-source extension you are agreeing to it's [privacy policy](https://menino.eu/xSync/privacypolicy) and [terms and conditions](https://menino.eu/xSync/termsandconditions).
