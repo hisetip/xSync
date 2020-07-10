@@ -1,0 +1,23 @@
+{
+  "name": "xSync",
+  "version": "0.2",
+  "description": "Sync and manage tabs between different browsers.",
+  "homepage_url": "http://menino.eu/",
+  "manifest_version": 2,
+  "background": {
+      "scripts": ["background.js"]
+  },
+  "browser_action": {
+    "browser_style": true,
+    "default_title": "xSync",
+    "default_popup": "tabs.html"
+  },
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "icons": {
+		"128": "/icons/planet-space.png"
+	}
+  
+}
