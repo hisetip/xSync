@@ -60,6 +60,7 @@ function listTabs() {
         } else {
           enterElement.textContent = br.name;
         }
+        enterElement.style = "font-weight: bold";
         currentTabs.appendChild(enterElement);
 
         let tabs = br.tabs;
@@ -67,7 +68,7 @@ function listTabs() {
           let tabLink = document.createElement('a');
 
           tabLink.textContent = tab.name;
-          tabLink.style = "text-decoration: underline;";
+          tabLink.style = "text-decoration: underline; color:black;";
           tabLink.onclick = function() {
             chrome.tabs.create({url: tab.url});
           }

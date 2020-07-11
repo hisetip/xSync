@@ -4,17 +4,20 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="tabs.css"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   </head>
 
 <body>
   <div class="panel">
-    <div class="panel-section panel-section-header">
-      <h2>xSync Tabs</h2>
-    </div>
-
-    <div class="panel-section-separator"></div>
-
+    
+    <h3>xSync Tabs</h3>
+    
     <div class="log-in">
+      <hr>
       <form>
         <label for="fname">User key:</label><br>
         <input type="password" id="fname" name="fname"><br>
@@ -24,6 +27,7 @@
     </div>
 
     <div class="browser-choice">
+      <hr>
       Browser:
       <form>
         <input id="browsers" list="browsers-datalist" >
@@ -33,37 +37,28 @@
       </form>
     </div>
 
-
-    <div class="panel-section-separator"></div>
-    
     <div class="switch-tabs">
-      <br>
+      <hr>
       <input id="syncb" type="submit" value="Sync Tabs" style="float:right">
       <div id="tabs-list"></div>
-      <br>
-      <div class="panel-section-separator"></div>
-      <br>
+      <hr>
       <form>
         <div style="text-align: center;">
           <input id="signoff" type="submit" value="Sign Off">
         </div>
         
-        <br>
-        <div class="panel-section-separator"></div>
-        <br>
+        <hr>
         More:<br>
-        <input id="viewUserKey" type="submit" value="View user key"><br>
-        <input id="remAccount" type="submit" value="Permanently delete account"><br>
-        <input id="privPolicy" type="submit" value="View privacy policy"><br>
-        <input id="termsCond" type="submit" value="View terms and conditions"><br>
-        <input id="aboutB" type="submit" value="About">
-      </form> 
-      <br>
+        <input id="viewUserKey" type="submit" value="View user key" style="margin:2px;"><br>
+        <input id="remAccount" type="submit" value="Permanently delete account" style="margin:2px;"><br>
+        <input id="privPolicy" type="submit" value="View privacy policy" style="margin:2px;"><br>
+        <input id="termsCond" type="submit" value="View terms and conditions" style="margin:2px;"><br>
+        <input id="aboutB" type="submit" value="About" style="margin:2px;">
+      </form>
       
     </div>
 
-    <div class="panel-section-separator"></div>
- 
+    <br>
   </div>
 
   <script src="tabs.js"></script>
