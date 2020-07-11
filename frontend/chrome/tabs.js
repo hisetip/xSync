@@ -6,8 +6,7 @@ function main() {
 }
 
 function retrieveStorage() { 
-  //chrome.storage.sync.get("user_dt").then(gotStorage, onError);
-  chrome.storage.sync.get(['user_dt'], gotStorage);
+  chrome.storage.local.get(['user_dt'], gotStorage);
 }
 
 function gotStorage(item) {
@@ -175,8 +174,7 @@ document.addEventListener("click", (e) => {
         document.getElementsByClassName('switch-tabs')[0].style.display = 'initial';
         listTabs();
         let user_dtt = {name: "user_dt", id_user: user_id, id_browser: browser_id};
-        //chrome.storage.sync.set({user_dt}).then(function (){console.log("saved")}, function(){});
-        chrome.storage.sync.set({user_dt: user_dtt}, function() {
+        chrome.storage.local.set({user_dt: user_dtt}, function() {
           console.log('saved');
         });
       }
@@ -192,8 +190,7 @@ document.addEventListener("click", (e) => {
     document.getElementsByClassName('browser-choice')[0].style.display = 'none';
     document.getElementsByClassName('switch-tabs')[0].style.display = 'initial';
     let user_dtt = {name: "user_dt", id_user: user_id, id_browser: browser_id};
-    //chrome.storage.sync.set({user_dt}).then(function (){console.log("saved")}, function(){});
-    chrome.storage.sync.set({user_dt: user_dtt}, function(value) {console.log("saved")});
+    chrome.storage.local.set({user_dt: user_dtt}, function(value) {console.log("saved")});
     manuallySendTabs();
     listTabs();
   }
@@ -240,7 +237,7 @@ document.addEventListener("click", (e) => {
       if(resp.deleted === true) {
         user_id = null;
         browser_id = null;
-        chrome.storage.sync.remove('user_dt', function() {
+        chrome.storage.local.remove('user_dt', function() {
           console.log("logged out"); chrome.runtime.reload();
         });
       } else {
@@ -269,7 +266,7 @@ document.addEventListener("click", (e) => {
     }
     user_id = null;
     browser_id = null;
-    chrome.storage.sync.remove("user_dt", function() {
+    chrome.storage.local.remove("user_dt", function() {
       console.log("logged out"); chrome.runtime.reload();
     });
   }

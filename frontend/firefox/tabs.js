@@ -6,7 +6,7 @@ function main() {
 }
 
 function retrieveStorage() { 
-  browser.storage.sync.get("user_dt").then(gotStorage, onError);
+  browser.storage.local.get("user_dt").then(gotStorage, onError);
 }
 
 function gotStorage(item) {
@@ -174,7 +174,7 @@ document.addEventListener("click", (e) => {
         document.getElementsByClassName('switch-tabs')[0].style.display = 'initial';
         listTabs();
         let user_dt = {name: "user_dt", id_user: user_id, id_browser: browser_id};
-        browser.storage.sync.set({user_dt}).then(function (){console.log("saved")}, function(){});
+        browser.storage.local.set({user_dt}).then(function (){console.log("saved")}, function(){});
       }
       
       
@@ -188,7 +188,7 @@ document.addEventListener("click", (e) => {
     document.getElementsByClassName('browser-choice')[0].style.display = 'none';
     document.getElementsByClassName('switch-tabs')[0].style.display = 'initial';
     let user_dt = {name: "user_dt", id_user: user_id, id_browser: browser_id};
-    browser.storage.sync.set({user_dt}).then(function (){console.log("saved")}, function(){});
+    browser.storage.local.set({user_dt}).then(function (){console.log("saved")}, function(){});
     manuallySendTabs();
     listTabs();
   }
@@ -235,7 +235,7 @@ document.addEventListener("click", (e) => {
       if(resp.deleted === true) {
         user_id = null;
         browser_id = null;
-        browser.storage.sync.remove("user_dt").then(function (){console.log("account removed"); browser.runtime.reload();}, function(){});
+        browser.storage.local.remove("user_dt").then(function (){console.log("account removed"); browser.runtime.reload();}, function(){});
       } else {
         window.alert("Error deleting. Try again, please. Or contact us at menino.eu.")
       }
@@ -262,7 +262,7 @@ document.addEventListener("click", (e) => {
     }
     user_id = null;
     browser_id = null;
-    browser.storage.sync.remove("user_dt").then(function (){console.log("logged out"); browser.runtime.reload();}, function(){});
+    browser.storage.local.remove("user_dt").then(function (){console.log("logged out"); browser.runtime.reload();}, function(){});
   }
 
   e.preventDefault();

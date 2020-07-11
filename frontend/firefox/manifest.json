@@ -1,6 +1,6 @@
 {
   "name": "xSync",
-  "version": "0.3",
+  "version": "0.3.2",
   "description": "Sync and manage tabs between different browsers.",
   "homepage_url": "http://menino.eu/",
   "manifest_version": 2,
