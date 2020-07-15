@@ -47,6 +47,28 @@ function listTabs() {
     xhr.onload = () =>  {
       const resp = JSON.parse(xhr.response);
 
+      if(resp.error == true) {
+        //log user off
+        console.log("Update sent w/ empty tabs.");
+
+        let tosendJson = JSON.stringify({
+              user: user_id,
+              browser: browser_id,
+              tabz: []
+            });
+        const xhr = new XMLHttpRequest();
+        const url='https://us-central1-xsync-extension.cloudfunctions.net/updateTabs';
+        xhr.open("POST", url);
+        xhr.setRequestHeader('Content-type', 'text/plain;charset=UTF-8');
+        
+        xhr.send(tosendJson);
+        xhr.onload = () =>  {
+        }
+        user_id = null;
+        browser_id = null;
+        browser.storage.local.remove("user_dt").then(function (){console.log("logged out"); browser.runtime.reload();}, function(){});
+      }
+
       let tabsList = document.getElementById('tabs-list');
       let currentTabs = document.createDocumentFragment();
       tabsList.textContent = '';

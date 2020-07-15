@@ -21,11 +21,11 @@ var lastTabsSent = null;
 function sendTabs() {
   var d = new Date();
   var n = d.getTime();
-  if(lastTimeSent != null && (n - lastTimeSent) < 60000 ) { // 600000
+  if(lastTimeSent != null && (n - lastTimeSent) < 600000 ) {
     return;
   }
 
-  chrome.storage.sync.get(['user_dt'], function(item) {
+  chrome.storage.local.get(['user_dt'], function(item) {
     var user_id = null;
     var browser_id = null;
 
