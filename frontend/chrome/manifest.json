@@ -16,8 +16,8 @@
     "tabs",
     "storage"
   ],
-  "icons": {
-		"128": "/icons/planet-space.png"
-	}
+  "icons": { "16": "/icons/planet-space16.png",
+    "48": "/icons/planet-space48.png",
+   "128": "/icons/planet-space.png" }
   
 }
