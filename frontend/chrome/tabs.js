@@ -1,5 +1,6 @@
 var user_id = null;
 var browser_id = null;
+var autosync = true;
 
 function main() {
   document.getElementsByClassName('log-in')[0].style.display = 'none';
@@ -13,10 +14,18 @@ function retrieveStorage() {
 }
 
 function gotStorage(item) {
-  if(item.user_dt != null && item.user_dt.id_user != null && item.user_dt.id_browser != null) {
+  if(item.user_dt != null && item.user_dt.id_user != null && item.user_dt.id_browser != null && item.user_dt.autosync != null) {
     user_id = item.user_dt.id_user;
     browser_id = item.user_dt.id_browser;
+    autosync = item.user_dt.autosync;
     
+    if(autosync) {
+      document.getElementById('autosyncButton').value = 'Turn Off AutoSync';
+      document.getElementById('autosyncText').textContent = 'AutoSync On';
+    } else {
+      document.getElementById('autosyncButton').value = 'Turn On AutoSync';
+      document.getElementById('autosyncText').textContent = 'AutoSync Off';
+    }
   }
   if(user_id != null) {
     listTabs();
@@ -203,7 +212,7 @@ document.addEventListener("click", (e) => {
         document.getElementsByClassName('log-in')[0].style.display = 'none';
         document.getElementsByClassName('switch-tabs')[0].style.display = 'initial';
         listTabs();
-        let user_dtt = {name: "user_dt", id_user: user_id, id_browser: browser_id};
+        let user_dtt = {name: "user_dt", id_user: user_id, id_browser: browser_id, autosync: true};
         chrome.storage.local.set({user_dt: user_dtt}, function() {
           console.log('saved');
         });
@@ -219,7 +228,7 @@ document.addEventListener("click", (e) => {
     browser_id = document.getElementById('browsers').value;
     document.getElementsByClassName('browser-choice')[0].style.display = 'none';
     document.getElementsByClassName('switch-tabs')[0].style.display = 'initial';
-    let user_dtt = {name: "user_dt", id_user: user_id, id_browser: browser_id};
+    let user_dtt = {name: "user_dt", id_user: user_id, id_browser: browser_id, autosync: true};
     chrome.storage.local.set({user_dt: user_dtt}, function(value) {console.log("saved")});
     manuallySendTabs();
     listTabs();
@@ -239,6 +248,21 @@ document.addEventListener("click", (e) => {
 
   if(e.target.id === "aboutB") {
     chrome.tabs.create({url: "https://menino.eu/xSync"});
+  }
+
+  if(e.target.id === "autosyncButton") {
+    if(autosync) {
+      autosync = false;
+      document.getElementById('autosyncText').textContent = 'AutoSync Off';
+      document.getElementById('autosyncButton').value = 'Turn On AutoSync';
+    } else {
+      autosync = true;
+      document.getElementById('autosyncText').textContent = 'AutoSync On';
+      document.getElementById('autosyncButton').value = 'Turn Off AutoSync';
+    }
+
+    let user_dtt = {name: "user_dt", id_user: user_id, id_browser: browser_id, autosync: autosync};
+    chrome.storage.local.set({user_dt: user_dtt}, function(value) {console.log("saved")});
   }
 
   if(e.target.id === "viewUserKey") {

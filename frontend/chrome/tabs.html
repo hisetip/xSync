@@ -12,7 +12,7 @@
 <body>
   <div class="panel">
     
-    <h3>xSync Tabs</h3>
+    <h3 style="text-align: center; margin: 0px;">xSync Tabs</h3>
     
     <div class="log-in">
       <hr>
@@ -36,7 +36,7 @@
     </div>
 
     <div class="switch-tabs">
-      <hr>
+      <hr style="margin-top: 0px;">
       <input id="syncb" type="submit" value="Sync Tabs" style="float:right">
       <div id="tabs-list"></div>
       <hr>
@@ -46,7 +46,8 @@
         </div>
         
         <hr>
-        More:<br>
+        <strong>More</strong><br>
+        <span id="autosyncText" style="margin-left: 6px; margin-right: 4px;">AutoSync On</span><input id="autosyncButton" type="submit" value="Turn Off AutoSync"><br>
         <input id="viewUserKey" type="submit" value="View user key" style="margin:2px;"><br>
         <input id="remAccount" type="submit" value="Permanently delete account" style="margin:2px;"><br>
         <input id="privPolicy" type="submit" value="View privacy policy" style="margin:2px;"><br>

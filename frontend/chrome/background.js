@@ -28,13 +28,20 @@ function sendTabs() {
   chrome.storage.local.get(['user_dt'], function(item) {
     var user_id = null;
     var browser_id = null;
+    var autosync = true;
 
-    if(item.user_dt != null && item.user_dt.id_user != null && item.user_dt.id_browser != null) {
+    if(item.user_dt != null && item.user_dt.id_user != null && item.user_dt.id_browser != null && item.user_dt.autosync != null) {
       user_id = item.user_dt.id_user;
       browser_id = item.user_dt.id_browser;
+      autosync = item.user_dt.autosync;
     } else {
       return;
     }
+
+    if(!autosync) {
+      return;
+    }
+
     lastTimeSent = n;
 
     var tosend = [];
