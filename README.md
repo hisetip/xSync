@@ -36,3 +36,6 @@ The repository is organized into two parts:
 * You can find me at [menino.eu](https://menino.eu). Hit me up if you need anything.
 * If you find this useful, consider buying me a beer by donating to [paypal.me/hisetip](paypal.me/hisetip) or to the Bitcoin address `13xidhEb5RymfZX9qoHFH4myE7B6SCtC9g`
 
+## Open Source Libraries/Code Used
+* [Bootstrap] (https://getbootstrap.com/)
+
