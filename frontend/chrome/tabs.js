@@ -2,6 +2,9 @@ var user_id = null;
 var browser_id = null;
 
 function main() {
+  document.getElementsByClassName('log-in')[0].style.display = 'none';
+  document.getElementsByClassName('browser-choice')[0].style.display = 'none';
+  document.getElementsByClassName('switch-tabs')[0].style.display = 'none';
   retrieveStorage();
 }
 
@@ -19,9 +22,11 @@ function gotStorage(item) {
     listTabs();
     document.getElementsByClassName('log-in')[0].style.display = 'none';
     document.getElementsByClassName('browser-choice')[0].style.display = 'none';
+    document.getElementsByClassName('switch-tabs')[0].style.display = 'initial';
   } else {
     document.getElementsByClassName('switch-tabs')[0].style.display = 'none';
     document.getElementsByClassName('browser-choice')[0].style.display = 'none';
+    document.getElementsByClassName('log-in')[0].style.display = 'initial';
   }
   
   
@@ -43,6 +48,8 @@ function listTabs() {
     xhr.setRequestHeader('Content-type', 'text/plain;charset=UTF-8');
     
     xhr.send(json);
+
+    document.getElementById('tabs-list').textContent = "Loading tabs...";
 
     xhr.onload = () =>  {
       const resp = JSON.parse(xhr.response);
