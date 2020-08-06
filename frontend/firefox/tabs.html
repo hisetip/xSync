@@ -1,66 +1,238 @@
 <!DOCTYPE html>
 
 <html>
+
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="tabs.css"/>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   </head>
 
-<body>
-  <div class="panel">
-    
-    <h3 style="text-align: center; margin: 0px;">xSync Tabs</h3>
-    
-    <div class="log-in">
-      <hr>
-      <form>
-        <label for="fname">User key:</label><br>
-        <input type="password" id="fname" name="fname"><br>
-        <input id="flogin" type="submit" value="Sign in">
-        <input id="fregister" type="submit" value="Register">
-      </form> 
-    </div>
+  <body>
 
-    <div class="browser-choice">
-      <hr>
-      Browser:
-      <form>
-        <input id="browsers" list="browsers-datalist" >
-        <datalist id="browsers-datalist" >
-        </datalist>
-        <input id="fbrowser" type="submit" value="Submit">
-      </form>
-    </div>
-
-    <div class="switch-tabs">
-      <hr style="margin-top: 0px;">
-      <input id="syncb" type="submit" value="Sync Tabs" style="float:right">
-      <div id="tabs-list"></div>
-      <hr>
-      <form>
-        <div style="text-align: center;">
-          <input id="signoff" type="submit" value="Sign Off">
-        </div>
-        
-        <hr>
-        <strong>More</strong><br>
-        <span id="autosyncText" style="margin-left: 6px; margin-right: 4px;">AutoSync On</span><input id="autosyncButton" type="submit" value="Turn Off AutoSync"><br>
-        <input id="viewUserKey" type="submit" value="View user key" style="margin:2px;"><br>
-        <input id="remAccount" type="submit" value="Permanently delete account" style="margin:2px;"><br>
-        <input id="privPolicy" type="submit" value="View privacy policy" style="margin:2px;"><br>
-        <input id="termCond" type="submit" value="View terms and conditions" style="margin:2px;"><br>
-        <input id="aboutB" type="submit" value="About" style="margin:2px;">
-      </form>
+    <!--Extention content-->
+    <div class="container-fluid" style="background-color: #333;">
       
+      <!--Add a margin to the rectangle containing the extention-->
+      <div class="container" style="margin: 5px;"> 
+
+        <!--Title-->
+        <h3 style="text-align: center; margin: 0px; color: grey;">xSync Tabs</h3>
+        
+        <!--Separation bar-->
+        <hr style="background-color: grey;">
+      
+        <!--Log in-->
+        <div class="log-in" style="margin:auto;">
+          <form>
+            <!--Title-->
+            <h5 for="fname" style="text-align: center; color: white;">Sign in using your user key:</h5><br>
+
+            <!--Textbox-->
+            <input type="text" class="form-control" id="fname" name="fname" placeholder="Insert key" 
+              style="text-align: center;" required />
+
+            <!--Error text for empty key-->
+            <div class="error-empty-key" style="display: none;">
+              <small style="color: red;">
+                The key field can't be empty.
+              </small>
+            </div>
+
+            <!--Error text for wrong key-->
+            <div class="error-wrong-key" style="display: none;">
+              <small style="color: red;">
+                Wrong key. Please try again.
+              </small>
+            </div>
+            
+            <!--Break-->
+            <br>
+
+            <!--Buttons-->
+            <div class="btn-group btn-block form-group">
+              <button type="submit" class="btn btn-outline-light" id="flogin">Sign in</button>
+              <!-- <button type="button" class="btn btn-outline-light" id="fregister">Register</button> -->
+            </div>
+
+            <!--Register link-->
+            <a href="" id="fregister">Don't have a key? Click here to generate one!</a>
+
+          </form>
+        </div>
+
+        <!--Choose browser name prompt(register)-->
+        <div class="name-prompt" >
+          
+          <!--Input box prompt-->
+          <div style="margin:auto;">
+            <form>
+              <!--Title-->
+              <h5 for="prompt" style="text-align: center; color: white;">Choose a name for this browser:</h5><br>
+  
+              <!--Textbox-->
+              <input type="text" class="form-control" id="browser-name" name="prompt" placeholder="Name for this browser" 
+                style="text-align: center;" required />
+  
+              <!--Error text for empty name-->
+              <div class="error-empty-name" style="display: none;">
+                <small style="color: red;">
+                  The browser's name can't be empty.
+                </small>
+              </div>
+  
+              <!--Warning for same name browsers--> 
+              <div>
+                <small style="color: grey;">
+                  Warning: Choosing the same name as an existing browser will overwrite it.
+                </small>
+              </div>
+  
+              <!--Buttons-->
+              <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="margin-top: 10px;">
+                <div class="btn-group" role="group" aria-label="First group" style="width: 48%;">
+                  <button type="submit" class="btn btn-outline-success" id="psubmit">Submit</button>
+                </div>
+                <div class="btn-group" role="group" aria-label="Separation" style="width: 4%;"></div>
+                <div class="btn-group" role="group" aria-label="Second group" style="width: 48%;">
+                  <button type="button" class="btn btn-outline-danger" id="pcancel">Cancel</button>  
+                </div>
+              </div>
+              
+            </form>
+          </div>
+
+          <!--Terms and Privacy-->
+          <div style="margin-top: 5px;">
+           
+              <span style="color: grey;">
+                By submitting this form, you agree to our
+                <a id="termsLink" href="" style="margin: 0px;">Terms</a>
+                and
+                <a id="privacyLink" href="" style="margin: 0px;">Privacy Policy</a>
+                .
+              </span>
+            
+          </div>
+          
+        </div>
+
+        <!--Choose browser name prompt(login)-->
+        <div class="browser-choice">
+          <!--Input box prompt-->
+          <div style="margin:auto;">
+            <form>
+              <!--Title-->
+              <h5 for="prompt" style="text-align: center; color: white;">Choose a name for this browser:</h5><br>
+  
+              <!--Textbox-->
+              <input type="text" class="form-control" id="browsers" list="browsers-datalist" name="prompt" placeholder="Name for this browser" 
+                style="text-align: center;" required />
+  
+              <!--Error text for empty name-->
+              <div class="error-empty-name-after-login" style="display: none;">
+                <small style="color: red;">
+                  The browser's name can't be empty.
+                </small>
+              </div>
+  
+              <!--Warning for same name browsers--> 
+              <div>
+                <small style="color: grey;">
+                  Warning: Choosing the same name as an existing browser will overwrite it.
+                </small>
+              </div>
+  
+              <!--Buttons-->
+              <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="margin-top: 10px;">
+                <div class="btn-group" role="group" aria-label="First group" style="width: 48%;">
+                  <button type="submit" class="btn btn-outline-success" id="fbrowser">Submit</button>
+                </div>
+                <div class="btn-group" role="group" aria-label="Separation" style="width: 4%;"></div>
+                <div class="btn-group" role="group" aria-label="Second group" style="width: 48%;">
+                  <button type="button" class="btn btn-outline-danger" id="pcancel">Cancel</button>  
+                </div>
+              </div>
+              
+              <!--Browsers logged(?)--> 
+              <div>
+                <datalist id="browsers-datalist">
+                </datalist>
+              </div>
+
+            </form>
+          </div>
+         
+        </div>
+
+        <!--Main extention page-->
+        <div class="switch-tabs" >
+
+          <!--Sync Tabs button-->
+          <div style="margin-bottom: 5px;">
+            <button id="syncb" type="submit" class="btn btn-outline-primary btn-block">Sync Tabs</button>
+          </div>
+          
+          <!--List of browsers and their tabs-->
+          <div id="tabs-list" style="color: white;"></div>
+          
+          <!--Separation bar-->
+          <hr style="background-color: grey;">
+
+          <!--Settings-->
+          <div style="text-align: center;">
+            <!--Settings Title-->
+            <h5 style="text-align: center; color: grey; margin-bottom: 10px;"><strong>Settings</strong></h4>
+            
+            <!--Autosync-->
+            <div style="text-align: center;">
+              <!--Autosync status text-->
+              <span id="autosyncText" style="color: white; margin-right: 5%;">AutoSync On</span>
+
+              <!--Change status button-->
+              <input id="autosyncButton" type="submit" class="btn btn-primary" value="Turn Off AutoSync">
+            </div>
+ 
+            <!--User Key and Remove Account-->
+            <div class="btn-group btn-block" style="text-align: center; margin-top: 5px;">
+              <!--User Key-->
+              <button id="viewUserKey" type="submit" class="btn btn-primary" 
+                style="width: fit-content; border-top-right-radius: .25rem; border-bottom-right-radius: .25rem;">View user key</button>
+              
+              <!--Remove Account-->
+              <button id="remAccount" type="submit" class="btn btn-danger" 
+                style="width: fit-content; border-top-left-radius: .25rem; border-bottom-left-radius: .25rem; margin-left: 5px;">Permanently delete account</button>
+            </div>
+
+          </div>
+
+          <!--Sign Off button-->
+          <div style="margin-top: 15px;">
+            <button id="signoff" type="submit" class="btn btn-outline-danger btn-block">Sign Off</button>
+          </div>
+          
+          <!--Separation bar-->
+          <hr style="background-color: grey; margin-bottom: 5px;">
+
+          <!--Terms and Privacy-->
+          <div >
+            <p style="text-align: center; margin-bottom: 0px;">
+              <a id="privPolicy" href="" style="margin-bottom: 0px; margin-top: 0px;">Privacy</a>
+              <a id="termCond" href="" style="margin-bottom: 0px; margin-top: 0px;">Terms and Conditions</a>
+              <a id="aboutB" href="" style="margin-bottom: 0px; margin-top: 0px;">About</a>
+            </p>
+          </div>
+
+        </div>
+
+        <br>
+      </div>
+
     </div>
-
-    <br>
-  </div>
-
-  <script src="tabs.js"></script>
-</body>
+      
+    <script src="tabs.js"></script>
+  </body>
 
 </html>
