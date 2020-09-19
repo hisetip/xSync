@@ -4,6 +4,7 @@ var autosync = true;
 
 function main() {
   document.getElementsByClassName('log-in')[0].style.display = 'none';
+  document.getElementsByClassName('name-prompt')[0].style.display = 'none';
   document.getElementsByClassName('browser-choice')[0].style.display = 'none';
   document.getElementsByClassName('switch-tabs')[0].style.display = 'none';
   retrieveStorage();
@@ -27,17 +28,19 @@ function gotStorage(item) {
       document.getElementById('autosyncText').textContent = 'AutoSync Off';
     }
   }
+
   if(user_id != null) {
     listTabs();
     document.getElementsByClassName('log-in')[0].style.display = 'none';
+    document.getElementsByClassName('name-prompt')[0].style.display = 'none';
     document.getElementsByClassName('browser-choice')[0].style.display = 'none';
     document.getElementsByClassName('switch-tabs')[0].style.display = 'initial';
   } else {
-    document.getElementsByClassName('switch-tabs')[0].style.display = 'none';
-    document.getElementsByClassName('browser-choice')[0].style.display = 'none';
     document.getElementsByClassName('log-in')[0].style.display = 'initial';
+    document.getElementsByClassName('name-prompt')[0].style.display = 'none';
+    document.getElementsByClassName('browser-choice')[0].style.display = 'none';
+    document.getElementsByClassName('switch-tabs')[0].style.display = 'none';
   }
-  
   
 }
 
@@ -106,7 +109,7 @@ function listTabs() {
           let tabLink = document.createElement('a');
 
           tabLink.textContent = tab.name;
-          tabLink.style = "text-decoration: underline; color:black;";
+          tabLink.style = "text-decoration: underline; color:grey;";
           tabLink.onclick = function() {
             chrome.tabs.create({url: tab.url});
           }
@@ -115,7 +118,7 @@ function listTabs() {
             tabLink.style.cursor = "pointer";
           }
           tabLink.onmouseleave = function() {
-            tabLink.style.color = "black";
+            tabLink.style.color = "grey";
             tabLink.style.cursor = "auto";
           }
           tabLink.classList.add('switch-tabs');
@@ -147,6 +150,16 @@ document.addEventListener("click", (e) => {
   if (e.target.id === "flogin") {
     user_id = document.getElementById('fname').value;
 
+    // reset the error messages 
+    document.getElementsByClassName('error-empty-key')[0].style.display = 'none';
+    document.getElementsByClassName('error-wrong-key')[0].style.display = 'none';
+    
+    // prevent the user from trying to sign up with a empty key
+    if (user_id == "") {
+      document.getElementsByClassName('error-empty-key')[0].style.display = 'inline';
+      return;
+    }
+
     const xhr = new XMLHttpRequest();
     const url='https://us-central1-xsync-extension.cloudfunctions.net/listTabs';
     let json = JSON.stringify({
@@ -160,6 +173,7 @@ document.addEventListener("click", (e) => {
     xhr.onload = () =>  {
       const resp = JSON.parse(xhr.response);
       if(resp.error != null) {
+        document.getElementsByClassName('error-wrong-key')[0].style.display = 'inline';
         console.log("User not found!");
         return;
       }
@@ -169,12 +183,12 @@ document.addEventListener("click", (e) => {
       for (let br of resp) {
         browsers.push(br.name);
       }
-      var str=''; // variable to store the options
+      var str = ''; // variable to store the options
       for (var i=0; i < browsers.length;++i){
         str += '<option value="'+browsers[i]+'" />'; // Storing options in variable
       }
 
-      var my_list=document.getElementById("browsers-datalist");
+      var my_list = document.getElementById("browsers-datalist");
       my_list.innerHTML = str;
 
     }
@@ -182,11 +196,42 @@ document.addEventListener("click", (e) => {
 
   if(e.target.id === "fregister") {
     document.getElementsByClassName('log-in')[0].style.display = 'none';
-    browser_id = prompt("Please enter a name for the browser", "Browser"+Math.floor((Math.random() * 10) + 1));
+    document.getElementsByClassName('name-prompt')[0].style.display = 'initial';
+
+    browser_id = "Browser" + Math.floor((Math.random() * 10) + 1);
+    document.getElementById('browser-name').value = browser_id;
+  }
+
+  if(e.target.id === "pcancel") {
+    document.getElementsByClassName('log-in')[0].style.display = 'initial';
+    document.getElementsByClassName('name-prompt')[0].style.display = 'none';
+    document.getElementsByClassName('browser-choice')[0].style.display = 'none';
+    browser_id = null;
+
+    document.getElementsByClassName('error-empty-name')[0].style.display = 'none';
+  }
+
+  if(e.target.id === "psubmit") {
+    // reset the error message for the new try
+    document.getElementsByClassName('error-empty-name')[0].style.display = 'none';
+
+    browser_id = document.getElementById('browser-name').value;
+
+    // prevent the user from submiting a empty browser name
+    if(browser_id == "") {
+      document.getElementsByClassName('error-empty-name')[0].style.display = 'inline';
+      return;
+    }
+
+    // remove the form display
+    document.getElementsByClassName('name-prompt')[0].style.display = 'none';
+
+    /*
     if(!window.confirm("You can find the Terms and Conditions here: https://menino.eu/xSync/termsandconditions\nYou can find the Privacy Policy here: https://menino.eu/xSync/privacypolicy\nClick OK if you have read, you understand and agree with the Terms and Conditions and the Privacy Policy.")) {
       document.getElementsByClassName('log-in')[0].style.display = 'initial';
       return;
     }
+    */
 
     var tosend = [];
     chrome.tabs.query({}, function (tabs) {
@@ -225,7 +270,17 @@ document.addEventListener("click", (e) => {
   }
 
   if(e.target.id === "fbrowser") {
+    // reset the error message for the new try
+    document.getElementsByClassName('error-empty-name-after-login')[0].style.display = 'none';
+
     browser_id = document.getElementById('browsers').value;
+
+     // prevent the user from submiting a empty browser name
+     if(browser_id == "") {
+      document.getElementsByClassName('error-empty-name-after-login')[0].style.display = 'inline';
+      return;
+    }
+
     document.getElementsByClassName('browser-choice')[0].style.display = 'none';
     document.getElementsByClassName('switch-tabs')[0].style.display = 'initial';
     let user_dtt = {name: "user_dt", id_user: user_id, id_browser: browser_id, autosync: true};
@@ -238,11 +293,11 @@ document.addEventListener("click", (e) => {
     manuallySendTabs();
   }
 
-  if(e.target.id === "privPolicy") {
+  if(e.target.id === "privPolicy" || e.target.id === "privacyLink") {
     chrome.tabs.create({url: "https://menino.eu/xSync/privacypolicy"});
   }
 
-  if(e.target.id === "termCond") {
+  if(e.target.id === "termCond" || e.target.id === "termsLink") {
     chrome.tabs.create({url: "https://menino.eu/xSync/termsandconditions"});
   }
 
@@ -266,7 +321,7 @@ document.addEventListener("click", (e) => {
   }
 
   if(e.target.id === "viewUserKey") {
-    window.alert("This is your user key: "+user_id+" \n\nKeep it safe (since anybody with it can access your synced content).")
+    window.alert("This is your user key: " + user_id + " \n\nKeep it safe (since anybody with it can access your synced content).")
   }
 
   if(e.target.id === "remAccount") {
@@ -292,7 +347,7 @@ document.addEventListener("click", (e) => {
         user_id = null;
         browser_id = null;
         chrome.storage.local.remove('user_dt', function() {
-          console.log("logged out"); chrome.runtime.reload();
+          console.log("account removed"); chrome.runtime.reload();
         });
       } else {
         window.alert("Error deleting. Try again, please. Or contact us at menino.eu.")
