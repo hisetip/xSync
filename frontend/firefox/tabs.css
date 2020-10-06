@@ -1,5 +1,5 @@
 html, body {
-  min-width: 350px;
+  width: 350px;
 }
 
 a {
@@ -8,10 +8,6 @@ a {
 }
 
 .switch-tabs {
-  padding-left: 10px;
-}
-
-.switch-tabs a {
   display: block;
 }
 
