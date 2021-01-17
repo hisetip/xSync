@@ -17,9 +17,6 @@ xSync is an [open-source](https://github.com/hisetip/xSync) browser extension  t
 ## Where to install it
 * You can compile it and install it in Google Chrome and Mozilla Firefox.
 
-## Terms and Conditions and Privacy Policy
-* By using this open-source extension you are agreeing to it's [privacy policy](https://menino.eu/xSync/privacypolicy) and [terms and conditions](https://menino.eu/xSync/termsandconditions).
-
 ## How this repository is organized
 The repository is organized into two parts:
 * Frontend
